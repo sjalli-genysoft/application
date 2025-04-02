@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <h1>Student Registration Form</h1>
+    <form action= "1.php" method="post" id="registrationform" onsubmit="return validateForm()">
+
+        <label for="firstname">Firstname</label>
+        <input type="text" name="firstname" id="firstname" required>  <br><br>
+        <div id="firstnameError" class="error"></div>
+
+
+        <label for="lastname">Lastname</label>
+        <input type="text" name="lastname" id="lastname" required><br><br>
+        <div id="lastnameError" class="error"></div>
+
+
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" required> <br><br>
+        <div id="emailError" class="error"></div>
+
+
+        <input type="submit" value="submit">
+
+    </form>
+   
+    <script>
+        // Function to validate First Name and Last Name
+        function validateName(input) {
+            // Trim leading and trailing spaces
+            let name = input.trim();
+
+            // Check if the name starts or ends with space
+            if (name !== input) {
+                return false; // Invalid if starts or ends with space
+            }
+
+            // Check if the name contains only letters and spaces in between
+            let namePattern = /^[A-Za-z]+( [A-Za-z]+)*$/;
+            return namePattern.test(name); // Return true if the pattern matches
+        }
+
+        // Function to validate email format 
+        
+        function validateEmail(email) {
+            // Regular expression for email validation
+            let emailPattern = /^[a-zA-Z._-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,6}$/;
+            return emailPattern.test(email); // Return true if the email matches the pattern
+        }
+
+        // Function to validate the form
+        function validateForm() {
+            let firstName = document.getElementById("firstname").value;
+            let lastName = document.getElementById("lastname").value;
+            let email = document.getElementById("email").value;
+
+            let isValid = true;
+
+            // Clear previous error messages
+            document.getElementById("firstnameError").textContent = "";
+            document.getElementById("lastnameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+
+            // Validate First Name
+            if (!validateName(firstName)) {
+                document.getElementById("firstnameError").textContent = "First name should not start with space. only A-Z or a-z are  allowed";
+                isValid = false;
+            }
+
+            // Validate Last Name
+            if (!validateName(lastName)) {
+                document.getElementById("lastnameError").textContent = "Last name should not start with space. only A-Z or a-z are allowed";
+                isValid = false;
+            }
+
+            // Validate Email
+            if (!validateEmail(email)) {
+                document.getElementById("emailError").textContent = "Please enter a valid email address.";
+                isValid = false;
+            }
+
+            return isValid; // If invalid, prevent form submission
+        }
+    </script>
+
+</body>
+</html>
