@@ -39,7 +39,6 @@ if ($result->num_rows > 0) {
         echo "Error: " . $stmt->error;
     }
 }
-
 $stmt->close();
 $conn->close();
 ?>
