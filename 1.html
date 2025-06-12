@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+       <style>
+        .error { color: red; font-size: 0.9em; }
+    </style>
 </head>
 <body> 
     <h1>Student Registration Form</h1>
@@ -48,7 +51,11 @@
         
         function validateEmail(email) {
             // Regular expression for email validation
-            let emailPattern = /^[a-zA-Z._-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,6}$/;
+           
+           let emailPattern= /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z]{2,}\.(com|org|net|in|edu|gov)$/;
+           //"Must start with a letter, have 2+ letter domain, and end in .com, .org, .net, .in, .edu, or .gov"
+
+           // let emailPattern = /^[a-zA-Z._-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,6}$/;
             return emailPattern.test(email); // Return true if the email matches the pattern
         }
 
